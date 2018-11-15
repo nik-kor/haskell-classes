@@ -1,0 +1,266 @@
+import { Head } from 'mdx-deck'
+import { Appear } from 'mdx-deck'
+
+<Head>
+  <title>---Haskell 101.0</title>
+</Head>
+
+# Haskell 101 workshop
+
+
+
+<img src='https://static.hellofresh.com/images/hellofresh-logo.svg?v=3' />
+
+<p>by @nikitakorotkih and @Nikolas Mayr</p>
+<p>19.11.2018</p>
+
+---
+
+# Few words about us
+
+* @Nikolas - works as director of mobile engineering, haskell as a hobby since 2006
+* @Nikita works as FE chapter lead in SCM, experience with haskell < 1 year
+
+---
+
+# Format of workshop
+
+* Some short presentation 3-5 min
+* Practice - working together
+* Repeat step 0
+
+---
+
+add the same slide but in declarative style
+
+---
+
+# Plans?
+
+* to have 2-3 more workshops about Haskell
+
+---
+
+## Main goal of these classes is to
+
+# Demistify Haskell
+
+---
+
+## Goals for today
+
+* Introduce to the language
+* Show tools
+* Basic syntax
+
+---
+
+## One-slide haskell overview
+
+* Purely functional - compiler will take care of it
+* Strongly-typed with type inference
+* Lazy evaluation - examples?
+* No objects: algebraic datatypes & pattern matching
+* Type classes: Principled overloading
+* Immutability by default
+* Non-null by default
+* Syntax for function application: `f x y` not `f(x, y)`
+
+---
+
+## Problems with Haskell
+
+
+---
+
+## Hakell syntax compared to other languges
+
+* Swift - TODO add snippets as an example
+* Scala - compare with haskell
+
+
+---
+
+# Myths about haskell
+
+* I need to know Category Theory
+* It's only for education
+
+---
+
+## Comparison of FP languages
+
+<a href='https://en.wikipedia.org/wiki/Comparison_of_functional_programming_languages' target='_blank'>Wikipedia</a>
+
+---
+
+# A lab for academia research
+
+* Haskell has its roots in academia
+* Haskell is a large language with a small Core
+* Haskell can be augmented with language extensions
+* Many compilers are written in Haskell (e.g. Elm, Idris, Agda, Purescript)
+
+---
+
+## <a href='https://github.com/Gabriel439/post-rfc/blob/master/sotu.md' target='_blank'>State of the Haskell ecosystem</a>
+
+---
+
+# Tools
+
+* For playing online - <a href='https://repl.it/languages/haskell' target='_blank'>repl.it</a>
+* For doing things locally - <a href='https://docs.haskellstack.org/en/stable/README/' target='_blank'>Stack</a> - (we prefer v1.9.1)
+
+---
+
+# IDE
+
+* <a href='https://github.com/rainbyte/haskell-ide-chart' target='_blank'>haskell ide chart</a>
+* there is also <a href='http://haskellformac.com/' target='_blank'>Haskell for mac</a>
+
+---
+
+# Practical part
+
+---
+
+## GHCi 101
+
+* `:t`
+* `:i`
+* `:r`
+* `:l`
+* `:h`
+
+---
+
+## Hello world
+
+* `main`
+* `print`
+
+---
+
+## Ex #1
+
+* discover types for `main` and `print`
+
+---
+
+# Functions
+
+* can you parse `a b c d` :)
+* variables
+
+---
+
+## Ex #2
+
+* write your own function `add` that sums 2 numbers
+* add call it inside GHCi
+
+---
+
+## Types declaration
+
+* `myCoolFunc :: Int -> (String -> Float) -> Bool -> [Int]`
+* parametric polymorthism - `id :: a -> a`
+* currying
+
+---
+
+## Ex #3
+
+* let's check the types of `print` and `main` again
+* declare type for your `add` function
+* make a function `add10` by partially applying to `add`
+
+---
+
+## Functions application & composition
+
+* `.`
+* `$`
+* TODO - add example with sorting
+
+---
+
+## Ex #4
+
+* write another function `sub10` by partially applying `sub :: Int -> Int -> Int`
+* compose `sub10` with `add10`
+
+---
+
+## Higher order functions
+
+* `foldr`
+
+---
+
+## Ex #5
+
+* use `map` to add 5 to each item of a list of integers
+
+---
+
+## Pattern matching
+
+Let's implement them:
+
+* `add :: (a, a) -> a`
+* `head' :: [a] -> a`
+* `map'`
+
+---
+
+## Ex #6
+
+* implement `sub' :: (a, a) -> a` with pattern matching
+* write your version of `tail' :: [a] -> [a]`
+
+---
+
+# Custom types
+
+* Product
+* Sum
+
+---
+
+## Product
+
+* example of <a target='_blank' href='https://hackage.haskell.org/package/ghc-prim-0.3.1.0/docs/src/GHC-Tuple.html'>tuple data type </a>
+* Records
+
+---
+
+## Ex #7
+
+* use `Product` instead of tuple in `add :: (a, a) -> a`
+
+---
+
+## Sum
+
+* `Bool`
+* `Maybe`
+* `Either`
+
+---
+
+## Ex #8
+
+* write safe version of head using `Maybe` - so `safeHead :: [a] -> Maybe a`
+
+---
+
+## Following topics
+
+ - recursion and recursive datastructures
+ - type classes
+ - Lists, Functors
+ - Monoids
+ - Monads
+brr
