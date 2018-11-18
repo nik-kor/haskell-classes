@@ -269,3 +269,24 @@ Let's implement them:
  - Monoids
  - Monads
 brr
+
+// parser example
+// bad example: string interpolation, updating records, named parameters, guard let
+
+
+extension Swift.Optional {
+    func bind<B>(_ f: (Wrapped) -> B?) -> B? {
+        return map(f) ?? nil
+    }
+}
+
+return (countrySelectorButton.value as? String).bind(LocaleCode.init)
+Value of type 'String?' has no member 'bind'
+return LocaleCode(rawValue: (countrySelectorButton.value as? String) ?? "")
+        guard let str = countrySelectorButton.value as? String else {
+            return nil
+        }
+        return LocaleCode(rawValue: str)
+
+Swift: Unable to infer complex closure return type; add explicit type to disambiguate
+Haskell: If it is possible to infer, it will infer. If not, it will slap your face until you fix your stuff.
