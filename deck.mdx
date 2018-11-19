@@ -18,8 +18,8 @@ import { Appear } from 'mdx-deck'
 
 # Few words about us
 
-* @Nikolas - works as director of mobile engineering, haskell as a hobby since 2006
 * @Nikita works as FE chapter lead in SCM, experience with haskell < 1 year
+* @Nikolas - works as director of mobile engineering, haskell as a hobby since 2006
 
 ---
 
@@ -31,7 +31,9 @@ import { Appear } from 'mdx-deck'
 
 ---
 
-add the same slide but in declarative style
+# Format of workshop
+
+* concat . repeat $ ["presentation", "practice"]
 
 ---
 
@@ -43,7 +45,7 @@ add the same slide but in declarative style
 
 ## Main goal of these classes is to
 
-# Demistify Haskell
+# Demystify Haskell
 
 ---
 
@@ -55,17 +57,76 @@ add the same slide but in declarative style
 
 ---
 
-## One-slide haskell overview
+# Basic Syntax
 
-* Purely functional - compiler will take care of it
-* Statically Strong-typed with type inference (no reflection by default)
+* Define a variable
+ * a :: Int -- Bool, String, Double
+ * a = 5
+* Use a variable (e.g in definition of other variable)
+ * b :: Int
+ * b = 2 * a
+
+---
+
+# Basic Syntax
+ 
+* Define a function
+ * f :: Int -> Int
+ * f x = 2 * x
+* Call a function
+ * f 5 -- = 10
+* Assign to new variable
+ * b :: Int
+ * b = f 5
+
+---
+
+# Basic Syntax
+
+* Define another function
+ * g :: (Int, Int) -> Int
+ * g (x,y) = x + y
+* Currying
+ * g' :: Int -> (Int -> Int)
+ * g' x y = x + y
+* Calling
+ * g' 4 5 -- = 9
+
+---
+
+# Basic Syntax
+
+* Right associative:
+ * Int -> (Int -> Int) ≡ Int -> Int -> Int
+ * (Int -> Int) -> Int ≠ Int -> Int -> Int
+* Partial application
+ * g' 5 -- ::  Int -> Int
+ * (g' 5) 4 -- = 9
+
+---
+
+# Practice
+
+* define a few variables of different types
+* mutate a variable
+* define a few functions of different types
+* call them
+* convert the following C-code to Haskell
+ * int calculateFive(void) { return 5 }
+ * int five = calculateFive()
+
+---
+
+## One-slide Haskell overview
+
+* Immutability
+* Purely functional - (different type "IO" to do I/O)
+* Statically Strong-typed with type inference (no runtime types/reflection*)
 * Lazy evaluation - examples?
 * Algebraic Data Types ("objects" possible, but unusual)
 * Pattern Matching
 * Type classes: Principled overloading
-* Immutability by default
 * Non-null by default
-* Syntax for function application: `f x y` not `f(x, y)`
 
 ---
 
@@ -74,7 +135,6 @@ add the same slide but in declarative style
 * No out-of-the-box String Interpolation
 * Foreigner on lots of platforms
 * Big but not abundant ecosystem/community
-* 
 
 ---
 
@@ -86,7 +146,7 @@ add the same slide but in declarative style
 
 ---
 
-# Myths about haskell
+# Myths about Haskell
 
 * I need to know Category Theory
 * It's only for education
