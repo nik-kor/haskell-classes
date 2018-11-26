@@ -10,7 +10,7 @@ Examples(+explore the type signatures):
 
  - (.)
  - ($)
- - foldr
+ - foldl
 
 --}
 
@@ -30,7 +30,7 @@ compositionFAfterG = f . g
 -- foldl :: Foldable t => (b -> a -> b) -> b -> t a -> b
 
 sumElements :: Num a => [a] -> a
-sumElements = undefined
+sumElements xs = foldl (\b a -> b + a) 0 xs
 
 {--
 
@@ -40,7 +40,7 @@ Use `map` to add 5 to each item of a list of integers
 --}
 
 addFiveToEachItem :: Num a => [a] -> [a]
-addFiveToEachItem xs = undefined
+addFiveToEachItem xs = map (\a -> a + 5) xs
 
 
 {--
@@ -50,19 +50,20 @@ addFiveToEachItem xs = undefined
 --}
 
 add :: (Int, Int) -> Int
-add = undefined
+add (a, b) = a + b
 
 head' :: [a] -> a
-head' = undefined
+head' (x:_) = x
 
+-- naive implementation!
 map' :: (a -> b) -> [a] -> [b]
-map' = undefined
-
+map' f [] = []
+map' f (x:xs) = f x : (map' f xs)
 
 {--
 ## ADT
 
-Great explanation of Product/Sum by Philip Wadler https://www.youtube.com/watch?v=V10hzjgoklA
+"Category Theory 5.2: Algebraic data types by Bartosz Milewski" https://www.youtube.com/watch?v=w1WMykh7AxA
 
 --}
 
@@ -75,15 +76,23 @@ Tuples - https://hackage.haskell.org/package/ghc-prim-0.3.1.0/docs/src/GHC-Tuple
 myTuple = (1, 2, "hi there", True)
 
 -- Records
+data Wife = Wife {} deriving (Show)
 
 data User = User {
       name :: String
     , age :: Int
     , married :: Bool
+    , wife :: Wife
 } deriving (Show)
 
+data Customer = Customer {
+    user :: User
+} deriving (Show)
+
+
+
 renderUser :: User -> String
-renderUser = undefined
+renderUser (User n a m w) = "the name is " ++ n ++ " and the age is " ++ (show a)
 
 
 {--
@@ -95,7 +104,7 @@ Use Pair for add
 data Pair = Pair { a :: Int, b :: Int }
 
 addPair :: Pair -> Int
-addPair = undefined
+addPair (Pair x y) = x + y
 
 {--
 ### Sum type
@@ -103,7 +112,7 @@ addPair = undefined
 
 data Bool' = True' | False'
 
-data Maybe' a = Just' a | Nothing
+data Maybe' a = Just' a | Nothing'
 
 data Either' a b = Left' a | Right' b
 
@@ -129,7 +138,9 @@ Implement safeHead
 --}
 
 safeHead :: [a] -> Maybe a
-safeHead = undefined
+safeHead [] = Nothing
+safeHead (x:_) = Just x
+
 
 
 
