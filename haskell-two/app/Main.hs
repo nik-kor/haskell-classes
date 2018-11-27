@@ -53,12 +53,19 @@ add :: (Int, Int) -> Int
 add (a, b) = a + b
 
 head' :: [a] -> a
-head' (x:_) = x
+head' (x : _) = x
 
 -- naive implementation!
 map' :: (a -> b) -> [a] -> [b]
-map' f [] = []
-map' f (x:xs) = f x : (map' f xs)
+map' f []       = []
+map' f (x : xs) = f x : (map' f xs)
+
+-- less naive
+map'' :: (a -> b) -> [a] -> [b]
+map'' f = go
+  where
+    go []       = []
+    go (x : xs) = f x : go xs
 
 {--
 ## ADT
@@ -76,23 +83,18 @@ Tuples - https://hackage.haskell.org/package/ghc-prim-0.3.1.0/docs/src/GHC-Tuple
 myTuple = (1, 2, "hi there", True)
 
 -- Records
-data Wife = Wife {} deriving (Show)
-
 data User = User {
       name :: String
     , age :: Int
-    , married :: Bool
-    , wife :: Wife
 } deriving (Show)
 
+-- records can hold other records
 data Customer = Customer {
     user :: User
 } deriving (Show)
 
-
-
 renderUser :: User -> String
-renderUser (User n a m w) = "the name is " ++ n ++ " and the age is " ++ (show a)
+renderUser (User n a) = "the name is " ++ n ++ " and the age is " ++ show a
 
 
 {--
@@ -138,14 +140,14 @@ Implement safeHead
 --}
 
 safeHead :: [a] -> Maybe a
-safeHead [] = Nothing
-safeHead (x:_) = Just x
+safeHead []      = Nothing
+safeHead (x : _) = Just x
 
 -- or using "case of"
 safeHead' :: [a] -> Maybe a
 safeHead' xs = case xs of
-    [] -> Nothing
-    (x:_) -> Just x
+    []      -> Nothing
+    (x : _) -> Just x
 
 
 
