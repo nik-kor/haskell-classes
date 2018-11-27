@@ -141,9 +141,11 @@ safeHead :: [a] -> Maybe a
 safeHead [] = Nothing
 safeHead (x:_) = Just x
 
-
-
-
+-- or using "case of"
+safeHead' :: [a] -> Maybe a
+safeHead' xs = case xs of
+    [] -> Nothing
+    (x:_) -> Just x
 
 
 
