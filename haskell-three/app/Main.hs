@@ -46,7 +46,9 @@ expressions.
 
 -- 1 1 2 3 5 8 13 21 ...
 fib :: Int -> Int
-fib = undefined
+fib 0 = 1
+fib 1 = 1
+fib n = fib (n - 2) + fib (n - 1)
 
 {--
 ### excercise
@@ -55,21 +57,28 @@ fib = undefined
 
 --}
 fact :: Int -> Int
-fact = undefined
+fact 1 = 1
+fact n = n * fact (n - 1)
 
 {--
 And sometimes we need to keep interim value
 --}
 
 divideBy :: Int -> Int -> (Int, Int)
-divideBy = undefined
+divideBy n den = go n den 0
+        where go n d count
+                | n < d = (count, n)
+                | otherwise = go (n - d) d (count + 1)
 {--
 ### excercise
 
 --}
 
 getMaxNumber :: [Int] -> Int
-getMaxNumber = undefined
+getMaxNumber (x:xs) = go xs x
+        where
+            go [] m = m
+            go (x:xs) m = go xs (if x > m then x else m)
 
 {--
 ## Recursive data structures
@@ -77,20 +86,21 @@ getMaxNumber = undefined
 
 
 -- data [] a = [] | a : [a]
-data List a = TBD
+data List a = Nil | Cons a (List a) deriving (Show)
 
 -- map :: (a -> b) -> [a] -> [b]
 
 mapList :: (a -> b) -> List a -> List b
-mapList = undefined
+mapList _ Nil = Nil
+mapList f (Cons a l) = Cons (f a) (mapList f l)
 
 {--
 ### excercise
 
 --}
-
 listLength :: List a -> Int
-listLength = undefined
+listLength Nil = 0
+listLength (Cons a l) = 1 + (listLength l)
 
 data Tree a = Leaf a | Branch (Tree a) (Tree a) deriving (Show)
 
@@ -99,7 +109,10 @@ Lets do the tree mapping
 --}
 
 mapTree :: (a -> b) -> Tree a -> Tree b
-mapTree = undefined
+mapTree f (Leaf a) = Leaf $ f a
+mapTree f (Branch (Leaf a) t) = Branch (Leaf $ f a) (mapTree f t)
+mapTree f (Branch t (Leaf a)) = Branch (mapTree f t) (Leaf $ f a)
+mapTree f (Branch t1 t2) = Branch (mapTree f t1) (mapTree f t2)
 
 {--
 An example of using recursive DS
