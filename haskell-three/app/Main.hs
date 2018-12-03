@@ -12,7 +12,7 @@ An example of sorting lists
 data Person = Person { name :: String, age :: Int }
     deriving (Show, Eq, Ord)
 
-p1, p2, p3 :: Person
+p1, p2, p3, p4 :: Person
 
 p1 = Person { name = "Bob", age = 21 }
 p2 = Person "Alice" 22
@@ -36,6 +36,79 @@ ps = [p1, p2, p3, p4]
     Hint: use `on`
 --}
 
+
+{--
+## Recursion
+
+Recursion is defining a function in terms of itself via self-referential
+expressions.
+--}
+
+-- 1 1 2 3 5 8 13 21 ...
+fib :: Int -> Int
+fib = undefined
+
+{--
+### excercise
+
+4! = 4 * 3 * 2 * 1
+
+--}
+fact :: Int -> Int
+fact = undefined
+
+{--
+And sometimes we need to keep interim value
+--}
+
+divideBy :: Int -> Int -> (Int, Int)
+divideBy = undefined
+{--
+### excercise
+
+--}
+
+getMaxNumber :: [Int] -> Int
+getMaxNumber = undefined
+
+{--
+## Recursive data structures
+--}
+
+
+-- data [] a = [] | a : [a]
+data List a = TBD
+
+-- map :: (a -> b) -> [a] -> [b]
+
+mapList :: (a -> b) -> List a -> List b
+mapList = undefined
+
+{--
+### excercise
+
+--}
+
+listLength :: List a -> Int
+listLength = undefined
+
+data Tree a = Leaf a | Branch (Tree a) (Tree a) deriving (Show)
+
+{--
+Lets do the tree mapping
+--}
+
+mapTree :: (a -> b) -> Tree a -> Tree b
+mapTree = undefined
+
+{--
+An example of using recursive DS
+https://youtu.be/xAZLceCZGks?t=1158 "Live coding a Mondrian generator" by Ju Liu
+--}
+
+{--
+https://en.wikibooks.org/wiki/Haskell/Recursion#Don't_get_TOO_excited_about_recursion...
+--}
 
 
 
